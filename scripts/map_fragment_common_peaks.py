@@ -65,6 +65,7 @@ with gzip.open (fragment, "r") as input:
                 if barcode in barcodes.keys():
                     fragment_start = line3[1]
                     fragment_end = line3[2]
+                    count = int(line3[4])
             
                     peak_starts = d[chr]["starts"]
                     peak_ends = d[chr]["ends"]
@@ -89,9 +90,9 @@ with gzip.open (fragment, "r") as input:
                         if barcode not in cells.keys():
                             cells[barcode] = {}                              
                         if gene_names not in cells[barcode].keys():
-                            cells[barcode][gene_names] = 1
+                            cells[barcode][gene_names] = count
                         else:
-                            cells[barcode][gene_names] = cells[barcode][gene_names] + 1
+                            cells[barcode][gene_names] = cells[barcode][gene_names] + count
                 
                     end_time = time.time()
                     print(end_time - start)
