@@ -26,3 +26,8 @@ zeis@example:~$ cat lane1_run2_R1.gz lane2_run2_R1.gz lane3_run2_R1.gz > run2_R1
 zeis@example:~$ python ~/python_scripts/check_umibarcode_overlap_2_fastq.py run1_R1_fastq.gz run2_R1_fastq.gz
 ``` 
 
+##### run script to create sample input file for pipeline
+``` bash
+zeis@example:~$ python ~/python_scripts/create_sample_file_sc_pipe.py -s sample1.sample2.sample3.sample -l 12.12.12.12 -f 1.1.1.1
+
+``` 
