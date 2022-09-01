@@ -30,4 +30,14 @@ zeis@example:~$ python ~/python_scripts/check_umibarcode_overlap_2_fastq.py run1
 ``` bash
 zeis@example:~$ python ~/python_scripts/create_sample_file_sc_pipe.py -s sample1.sample2.sample3.sample -l 12.12.12.12 -f 1.1.1.1
 
-``` 
+```
+
+##### run script to create mkfastq sample input file for cellranger-arc mkfastq
+ 
+``` bash
+zeis@example:~$ python ~/python_scripts/mkfastq_sample.py -s samp1.samp2.samp3.samp4 -l 12.12.12.12 -i S1-A1.S1-A2.S1-A3.S1-A4 -f 1.1.1.1 -n flowcell_nam
+```
+###### for novaseq demultiplexing requires two indexes which can be assigned using ","
+``` bash
+zeis@example:~$ python ~/python_scripts/mkfastq_sample.py -s samp1.samp2.samp3.samp4 -l 12.12.12.12 -i S1-TT-A1.S1-TT-A2.S1-TT-A3.S1-TT-A4.TTCTCGATGA,GTGCCCGACA -f 1.1.1.1 -n flowcell_nam      
+``` 	 
