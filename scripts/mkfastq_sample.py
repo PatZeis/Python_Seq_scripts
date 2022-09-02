@@ -42,6 +42,7 @@ if len(flow_cell_names) == 1:
         index_split = i.split(",")
         if len(index_split) == 2:
             index2=index_split[1]
+            i = index_split[0]
             
         else:
             index2="."
@@ -55,6 +56,7 @@ else:
         index_split = i.split(",")
         if len(index_split) == 2:
             index2=index_split[1]
+            i = index_split[0]
             
         else:
             index2="."
