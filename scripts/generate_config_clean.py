@@ -36,6 +36,8 @@ d["references"] = 'config/references.tsv'
 d["whitelist"] = whitelist
 d["filter_gtf"] = False
 
+d["bcl_file"] = 'data/mkfastq/bcl_folder'
+
 d["reference_files"] = ["Genome", "SAindex", "chrNameLength.txt", "exonInfo.tab", "sjdbInfo.txt", "transcriptInfo.tab", "Log.out", "chrLength.txt", "chrStart.txt", 
                         "geneInfo.tab", "sjdbList.fromGTF.out.tab", "SA", "chrName.txt", "exonGeTrInfo.tab", "genomeParameters.txt", "sjdbList.out.tab"]
 
