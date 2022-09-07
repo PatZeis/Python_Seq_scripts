@@ -65,8 +65,8 @@ mkfastq_files = ['outs/input_samplesheet.csv','outs/interop_path/IndexMetricsOut
 d["mkfastq_files"] = mkfastq_files
 
 
-d["fastq_path"] = "outs/fastq_path/"+flowcell_name+"/"
-d["fastq_undetermined"] = "outs/fastq_path/"
+d["fastq_path"] = "outs/fastq_path/"+flowcell_name
+d["fastq_undetermined"] = "outs/fastq_path
 
 
 with open('config.yaml', 'w') as file:
