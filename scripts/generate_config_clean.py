@@ -24,13 +24,21 @@ bucket = args.bucket
 sample_file = args.input_sample_file
 
 
-sample_file = pd.read_csv(sample_file, index_col=0, sep='\t')
+sample_file = pd.read_csv(sample_file, sep='\t')
 
 flowcell_name = sample_file.loc[:,"flowcell_name"][0]
 layer = sample_file.loc[:,"layer"][0]
+lanes = list(sample_file["lane_numbers"].to_numpy())
+samples = list(sample_file["id"].to_numpy())
 
 
 d = {}
+
+for s, l in zip(samples, lanes):
+    key_nam = s+"_lanes"
+    d[key_nam] = l.split(",")
+
+
 d["gs_bucket"] = bucket
 d["references"] = 'config/references.tsv'
 d["whitelist"] = whitelist
@@ -66,7 +74,7 @@ d["mkfastq_files"] = mkfastq_files
 
 
 d["fastq_path"] = "outs/fastq_path/"+flowcell_name
-d["fastq_undetermined"] = "outs/fastq_path
+d["fastq_undetermined"] = "outs/fastq_path"
 
 
 with open('config.yaml', 'w') as file:
