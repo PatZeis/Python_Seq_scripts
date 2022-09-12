@@ -14,11 +14,11 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-i", "--input_sample_file", help="give mkfastq sample file", type=str)
 parser.add_argument("-b", "--bucket", help="give bucket name", type=str)
 parser.add_argument("-w", "--bc_whitelist_file", help="give barcode whitelist file", type=str)
-
+parser.add_argument("-g", "--wget_path", help="from https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/downloads/latest copy the wget download path", type=str)  
 
 args = parser.parse_args()
 
-
+wget_path = args.wget_path
 whitelist = args.bc_whitelist_file
 bucket = args.bucket
 sample_file = args.input_sample_file
@@ -27,7 +27,7 @@ sample_file = args.input_sample_file
 sample_file = pd.read_csv(sample_file, sep='\t')
 
 flowcell_name = sample_file.loc[:,"flowcell_name"][0] ### assuming that all samples are run on the same flowcell
-layer = sample_file.loc[:,"layer"][0]
+#layer = sample_file.loc[:,"layer"][0]
 lanes = list(sample_file["lane_numbers"].to_numpy())[0]
 samples = list(sample_file["id"].to_numpy())
 flowcell = str(list(sample_file["flowcell_number"])[0])
@@ -37,7 +37,7 @@ d = {}
 #for s, l in zip(samples, lanes):
 #    key_nam = s+"_lanes"
 #    d[key_nam] = l.split(",")
-
+d["wget_arc"] = wget_path
 d["lanes"] = lanes.split(",")
 d["fc"] = flowcell.split(";")
 d["gs_bucket"] = bucket
@@ -78,11 +78,25 @@ d["fastq_path"] = "outs/fastq_path/"+flowcell_name
 d["fastq_undetermined"] = "outs/fastq_path"
 
 
-with open('config.yaml', 'w') as file:
+with open('config2.yaml', 'w') as file:
     documents = yaml.dump(d, file, default_flow_style=False)
 
+outputfile = 'config.yaml'
+inputfile = 'config2.yaml'
+output_file = open(outputfile, "w")
+with open (inputfile, "r") as input:
+    for line in input:
+        if "wget_arc" in line:
+            line2 = line.split()
+            line2[1] = '"'+"'"+line2[1]+"'"+'"' 
+            line2 = " ".join(line2)
+            output_file.write(line2+"\n")
+        else:
+            output_file.write(line)
 
-
+output_file.close()
+        
+        
 
 
 

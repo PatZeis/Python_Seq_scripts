@@ -43,6 +43,6 @@ zeis@example:~$ python ~/python_scripts/mkfastq_sample.py -s samp1.samp2.samp3.s
 ```
 ##### run script to create config file for snakemake, takes output of mkfastq_sample.py as input
 ``` bash
-zeis@example:~$ python ~/python_scripts/generate_config_clean.py -i mkfastq_samples.tsv -b buckets/zeis -w 3M-february-2018.txt
+zeis@example:~$ python ~/python_scripts/generate_config_clean.py -i mkfastq_samples.tsv -b buckets/zeis -w 3M-february-2018.txt -g "https://cf.10xgenomics.com/releases/cell-arc/cellranger-arc-2.0.2.tar.gz?Expires=1663040898&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZi4xMHhnZW5vbWljcy5jb20vcmVsZWFzZXMvY2VsbC1hcmMvY2VsbHJhbmdlci1hcmMtMi4wLjIudGFyLmd6IiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjYzMDQwODk4fX19XX0_&Signature=FGQ3AOD0pcBaK19yLQ4SpyEzdpXImF~G1VxfDqib1TIo0sIVIlQANhjH~xpONeh1s38jprYU257B0YK76JPQT6m9lish8jGT1HsyuFgHSN9t4ADr3eaqopDBY8DJeTCSVbpZwgpFKzEiBxOc8JuXOZG0jxnUc2yyyt9Bh1e0aLYHRP5-CZu6uwxBMxhmEModQlj5CPFIQFHb2kj26sBhKpmzJeXgCTzjemXXDj5aXSKCxAvTIzDZh8fnT8mQkKEepkxR6U-bN0N6tm8xIzWlSx1bqtG7NOrm3RY2kYDFbky8PE-FtJ1bIK0vDWAGbHIPtOp-3jFVQIbG9yS9d~ee-Q__&Key-Pair-Id=APKAI7S6A5RYOXBWRPDA"
 ``` 
   	 
