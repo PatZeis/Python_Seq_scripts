@@ -26,19 +26,20 @@ sample_file = args.input_sample_file
 
 sample_file = pd.read_csv(sample_file, sep='\t')
 
-flowcell_name = sample_file.loc[:,"flowcell_name"][0]
+flowcell_name = sample_file.loc[:,"flowcell_name"][0] ### assuming that all samples are run on the same flowcell
 layer = sample_file.loc[:,"layer"][0]
-lanes = list(sample_file["lane_numbers"].to_numpy())
+lanes = list(sample_file["lane_numbers"].to_numpy())[0]
 samples = list(sample_file["id"].to_numpy())
-
+flowcell = str(list(sample_file["flowcell_number"])[0])
 
 d = {}
+### assuming that lanes are the same for all samples
+#for s, l in zip(samples, lanes):
+#    key_nam = s+"_lanes"
+#    d[key_nam] = l.split(",")
 
-for s, l in zip(samples, lanes):
-    key_nam = s+"_lanes"
-    d[key_nam] = l.split(",")
-
-
+d["lanes"] = lanes.split(",")
+d["fc"] = flowcell.split(";")
 d["gs_bucket"] = bucket
 d["references"] = 'config/references.tsv'
 d["whitelist"] = whitelist
