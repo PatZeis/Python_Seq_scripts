@@ -23,10 +23,10 @@ whitelist = args.bc_whitelist_file
 bucket = args.bucket
 sample_file = args.input_sample_file
 
-
 sample_file = pd.read_csv(sample_file, sep='\t')
 
 flowcell_name = sample_file.loc[:,"flowcell_name"][0] ### assuming that all samples are run on the same flowcell
+flowcell_name_atac = sample_file.loc[:,"flowcell_name_atac"][0]
 #layer = sample_file.loc[:,"layer"][0]
 lanes = list(sample_file["lane_numbers"].to_numpy())[0]
 samples = list(sample_file["id"].to_numpy())
@@ -75,6 +75,7 @@ d["mkfastq_files"] = mkfastq_files
 
 
 d["fastq_path"] = "outs/fastq_path/"+flowcell_name
+d["fastq_path_atac"] = "outs/fastq_path/"+flowcell_name_atac
 d["fastq_undetermined"] = "outs/fastq_path"
 
 

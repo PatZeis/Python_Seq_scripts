@@ -39,7 +39,7 @@ zeis@example:~$ python ~/python_scripts/mkfastq_sample.py -s samp1.samp2.samp3.s
 ```
 ###### for novaseq demultiplexing requires two indexes which can be assigned using ","
 ``` bash
-zeis@example:~$ python ~/python_scripts/mkfastq_sample.py -s samp1.samp2.samp3.samp4 -l 12.12.12.12 -i S1-TT-A1.S1-TT-A2.S1-TT-A3.S1-TT-A4.TTCTCGATGA,GTGCCCGACA -f 1.1.1.1 -n flowcell_nam -m SI-NA-H8.SI-NA-B9.SI-NA-C9.SI-NA-F10      
+zeis@example:~$ python ~/python_scripts/mkfastq_sample.py -s samp1.samp2.samp3.samp4 -l 12.12.12.12 -i S1-TT-A1.S1-TT-A2.S1-TT-A3.S1-TT-A4.TTCTCGATGA,GTGCCCGACA -f 1.1.1.1 -n flowcell_nam -m SI-NA-H8.SI-NA-B9.SI-NA-C9.SI-NA-F10 -a flowcell_nam_atac      
 ```
 ##### run script to create config file for snakemake, takes output of mkfastq_sample.py as input
 ``` bash

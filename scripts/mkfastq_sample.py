@@ -15,12 +15,14 @@ parser.add_argument("-s", "--sample_ids", help="name of samples", type=str)
 parser.add_argument("-l", "--lanes", help="give lanes", type=str)
 parser.add_argument("-i", "--index", help="give index", type=str)
 parser.add_argument("-f", "--flow_cells", help="give flowcells numbers(s)", type=str)
-parser.add_argument("-n", "--flow_cell_names", help="give flowcells numbers(s)", type=str)
+parser.add_argument("-n", "--flow_cell_names", help="give flowcell RNA name(s)", type=str)
 parser.add_argument("-m", "--multiomic_atac_index",nargs='?' , help="give_atac_index", type=str)
+parser.add_argument("-a", "--flow_cell_names_atac", help="give flowcell ATAC name(s)", type=str)
 
 args = parser.parse_args()
 
 flow_cell_names = args.flow_cell_names
+flow_cell_names_atac = args.flow_cell_names_atac
 flow_cells = args.flow_cells
 lanes = args.lanes
 samples = args.sample_ids
@@ -36,6 +38,7 @@ flow_cells = flow_cells.split(".")
 lanes = lanes.split(".")
 
 flow_cell_names = flow_cell_names.split(".")
+flow_cell_names_atac = flow_cell_names_atac.split(".")
 
 index = index.split(".")
 
@@ -57,6 +60,7 @@ index = index.split(".")
 d = {}
 if len(flow_cell_names) == 1:
     flow_cell_names = "".join(flow_cell_names)
+    flow_cell_names_atac = "".join(flow_cell_names_atac)
     if args.multiomic_atac_index is None:
         for s, f, l, i in zip(samples, flow_cells, lanes,index):
             index_split = i.split(",")
@@ -68,7 +72,7 @@ if len(flow_cell_names) == 1:
                 index2="."
 
             l =  ",".join(list(l))
-            sample_id =  [s,f,flow_cell_names, l, i, index2]
+            sample_id =  [s,f,flow_cell_names, l, i, index2, flow_cell_names_atac]
             d[s] = sample_id
 
     else:
@@ -81,14 +85,14 @@ if len(flow_cell_names) == 1:
                 index2="."
 
             l =  ",".join(list(l))
-            sample_id =  [s,f,flow_cell_names, l, i, index2, m]
+            sample_id =  [s,f,flow_cell_names, l, i, index2, m, flow_cell_names_atac]
             d[s] = sample_id
 
 
     
 else:
     if args.multiomic_atac_index is None:
-        for s, f, n,l, i in zip(samples, flow_cells, flow_cell_names, lanes, index ):
+        for s, f, n,l,i, j in zip(samples, flow_cells, flow_cell_names, lanes, index, flow_cell_names_atac ):
             index_split = i.split(",")
             if len(index_split) == 2:
                 index2=index_split[1]
@@ -98,10 +102,10 @@ else:
                 index2="."
         
             l =  ",".join(list(l))
-            sample_id =  [s,f,n, l, i, index2]
+            sample_id =  [s,f,n, l, i, index2, j]
             d[s] = sample_id
     else:
-        for s, f, n,l,i, m in zip(samples, flow_cells, flow_cell_names, lanes, index, atac_index):
+        for s, f, n,l,i,m, j in zip(samples, flow_cells, flow_cell_names, lanes, index, atac_index, flow_cell_names_atac):
             index_split = i.split(",")
             if len(index_split) == 2:
                 index2=index_split[1]
@@ -109,10 +113,10 @@ else:
             else:
                 index2="."
             l =  ",".join(list(l))
-            sample_id =  [s,f,n, l, i, index2, m]
+            sample_id =  [s,f,n, l, i, index2, m, j]
     
     
-data = pd.DataFrame.from_dict(d, orient='index', columns=["id","flowcell_number","flowcell_name","lane_numbers","index", "index2", "atac_index"])
+data = pd.DataFrame.from_dict(d, orient='index', columns=["id","flowcell_number","flowcell_name","lane_numbers","index", "index2", "atac_index", "flowcell_name_atac"])
 
 data.to_csv("mkfastq_samples.tsv",sep='\t', index=False)
     
