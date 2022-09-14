@@ -17,7 +17,7 @@ parser.add_argument("-i", "--index", help="give index", type=str)
 parser.add_argument("-f", "--flow_cells", help="give flowcells numbers(s)", type=str)
 parser.add_argument("-n", "--flow_cell_names", help="give flowcell RNA name(s)", type=str)
 parser.add_argument("-m", "--multiomic_atac_index",nargs='?' , help="give_atac_index", type=str)
-parser.add_argument("-a", "--flow_cell_names_atac", help="give flowcell ATAC name(s)", type=str)
+parser.add_argument("-a", "--flow_cell_names_atac",nargs='?', help="give flowcell ATAC name(s)", type=str)
 
 args = parser.parse_args()
 
