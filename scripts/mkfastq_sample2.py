@@ -116,7 +116,7 @@ if args.flow_cell_names_atac is not None:
 else:
     data = pd.DataFrame.from_dict(d, orient='index', columns=["id","index","index2","flowcell_name","flowcell_number","lane_numbers"])
 
-data.to_csv("config/mkfastq_samples.tsv",sep='\t', index=False)
+data.to_csv("mkfastq_samples.tsv",sep='\t', index=False)
     
 #else:
 #    raise ValueError("If Atac layer give either 'ATAC', 'A', ','[Aa]tac' or 'a' and if RNA give either 'RNA', 'R', '[Rrna]' and 'r'")
