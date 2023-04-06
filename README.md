@@ -50,4 +50,10 @@ zeis@example:~$ python ~/python_scripts/generate_config_clean.py -i mkfastq_samp
 #### input of script is .csv peak file with peak information in first column and reference genome fasta
 ``` bash
 zeis@example:~$ python ~/python_scripts/extract_sequence_of_enhancers.py /path/genome.fa /path/peaks.csv
-```     	 
+```
+
+## extract percentage of sequence idendity of first human sequence match from mega blast output
+``` bash 
+zeis@example:~$ python ~/python_scripts/percent_identity_human.py Megablast_output.txt
+```
+      	 
