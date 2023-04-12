@@ -17,16 +17,22 @@ line_num = []
 
 with open (fasta, "r") as input:         
     for count, line1 in enumerate(input):
-        if bool(re.search('>[0-9]|>[0-9][0-9]|>MT|>X|>Y', line1)):
+        if bool(re.search('>[0-9]|>[0-9][0-9]|>MT|>X|>Y|>chr[0-9]|>chr[0-9][0-9]|>chrM|>chrX|>chrY', line1)):
             seq = ">".join(line1.split()).split(">")[1]
             seq_name.append(seq)
             line_num.append(count)
+seq_name2 = []
+for i in seq_name:
+    seq_name2.append(i.replace("chr", ""))
+
+seq_name = seq_name2
+seq_name2 = []
 
 output = csv.split("/")
 output = output[len(output)-1]
 output = output.split(".csv")[0]
 output = output.split("_")
-outputfile = output[4]+"_peak_list_base_sequence.txt"
+outputfile = output[8]+"_supergroup_peak_list_base_sequence.txt"
 output_file = open(outputfile, "w")
 print(outputfile + "\n")
 
