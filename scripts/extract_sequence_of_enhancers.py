@@ -10,7 +10,7 @@ import re
 import sys
 
 fasta = sys.argv[1]
-csv = sys.argv[2]
+peaks = sys.argv[2]
 
 seq_name = []
 line_num = []
@@ -28,17 +28,23 @@ for i in seq_name:
 seq_name = seq_name2
 seq_name2 = []
 
-output = csv.split("/")
+output = peaks.split("/")
 output = output[len(output)-1]
 output = output.split(".csv")[0]
 output = output.split("_")
-outputfile = output[8]+"_supergroup_peak_list_base_sequence.txt"
+outputfile = output[0]+"_peak_list_base_sequence.txt"
 output_file = open(outputfile, "w")
 print(outputfile + "\n")
 
-with open(csv, "r") as csv: #, open (fasta, "r") as input:
+with open(peaks, "r") as csv: #, open (fasta, "r") as input:
     for line in csv:
-        peak = line.split(",")[0]
+        if ".csv" in peaks: 
+            peak = line.split(",")[0]
+        else:
+            peak = line
+
+        peak = peak.replace(":", "-")
+        peak = peak.replace("\n", "")
         peak_chr = peak.split("-")[0]
         if "chr" in peak_chr:
             print("retrieving peak sequence of " + peak + "\n") 
